@@ -2,8 +2,39 @@
 
 To embed the **Society Review Programs** page into another website (like Squarespace, WordPress, or a custom site), you can use an HTML `iframe`.
 
-## Option 1: Standard Embed (Fixed Height)
-Use this code if you want the window to have a specific height.
+## Option 1: Safe Full Screen (Recommended)
+Use this code to fill the screen while avoiding your site's header/navigation.
+
+```html
+<style>
+  .safe-embed-container {
+    position: relative;
+    width: 100%;
+    /* 85vh is usually safer than 100vh to avoid covering headers/footers */
+    height: 85vh; 
+    overflow: hidden;
+    z-index: 1; /* Low z-index to ensure it stays behind your site's dropdowns/header */
+  }
+  .safe-embed-container iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: 0;
+  }
+</style>
+
+<div class="safe-embed-container">
+  <iframe 
+    src="https://simonallmer.github.io/Society-Review-Programs/" 
+    allowfullscreen>
+  </iframe>
+</div>
+```
+
+## Option 2: Standard Embed (Fixed Height)
+Use this code if you want the window to have a specific height (e.g. 800px).
 
 ```html
 <iframe 
@@ -14,35 +45,6 @@ Use this code if you want the window to have a specific height.
   style="border:0; width:100%;" 
   allowfullscreen>
 </iframe>
-```
-
-## Option 2: Full Screen / Responsive Embed
-Use this code if you want the embed to take up the full available width and height of its container.
-
-```html
-<style>
-  .embed-container {
-    position: relative;
-    width: 100%;
-    height: 100vh; /* Adjust this to 800px or similar if you don't want it to fill the screen */
-    overflow: hidden;
-  }
-  .embed-container iframe {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    border: 0;
-  }
-</style>
-
-<div class="embed-container">
-  <iframe 
-    src="https://simonallmer.github.io/Society-Review-Programs/" 
-    allowfullscreen>
-  </iframe>
-</div>
 ```
 
 ## Squarespace Specifics
